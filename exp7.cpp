@@ -1,33 +1,26 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
 using namespace std;
+class Student{
+private:
+    int marks;
+public:
+    static int count;
+    Student(int m)
+    {
+        marks = m;
+        count++;
+    }
+    friend void showMarks(Student s);
+};
+int Student::count = 0;
+void showMarks(Student s){
+    cout << "Marks: " << s.marks << endl;
+}
 int main(){
-    vector<double>salary={40000,100000,700000,200000,45000,55000};
-    for(auto value:salary){
-        cout<<value<<" "<<endl;
-    }
-    double TotalSalary=0;
-    for(auto value:salary){
-        TotalSalary+=value;  
-    }
-    cout<<"Total salary: "<<TotalSalary<<endl;
-    double highestsalary=salary[0];
-    for(auto value:salary){
-        if(value>highestsalary){
-            highestsalary=value;
-        }
-    }   
-    cout<<"Highest salary: "<<highestsalary<<endl;
-    int count=0;
-    for(auto value:salary){
-        if(value>50000){
-            count++;
-        }
-    }
-    cout<<"Number of employees having salary less than 50000: "<<count<<endl;
-    double x=0;
-    for(auto value:salary){
-        x=TotalSalary/salary.size();
-    }
-    cout<<"Average salary: "<<x<<endl;
+    Student s1(85);
+    Student s2(90);
+    showMarks(s1);
+    showMarks(s2);
+    cout << "Total Students: " << Student::count << endl;
+    return 0;
 }
